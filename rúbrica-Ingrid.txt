@@ -1,0 +1,118 @@
+Nombre: Ingrid Sánchez
+Evaluó: José Manuel Hernández
+OBTIENE PUNTAJE: 4/5
+COMPETENTE
+
+Buenos conocimientos para arreglar el código, comentó de buena forma el código, 
+faltó solo un poco para que el código funcionara.
+
+
+////CODIGO HTML ///
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./filtro.css"> <!--Corregir el href agregando ./ -->
+  <title>Filtros en JS</title>
+</head>
+
+<body>
+
+  <div>
+    <!--Cambiar el orden de los elementos y agregar id a estos-->
+    <h1>Lista de productos </h1>
+      <div id="lista-de-productos">
+      <input id='input' type="text" placeholder="Selecciona un color o tipo">
+      <button id="botonDeFiltro">Filtrar</button>
+    </div>
+  </div>
+  <script src="../filtro.js"></script>
+</body>
+
+</html>
+
+
+
+/// CODIGO JS ////
+// Tenemos un listado de productos
+
+const productos = [
+  {nombre: "Zapato negro", tipo: "zapato", color: "negro", img: "./taco-negro.jpg"},
+  {nombre: "Zapato azul", tipo: "zapato", color: "azul", img: "./taco-azul.jpg"},
+  {nombre: "Bota negra", tipo: "bota", color: "negro", img: "./bota-negra.jpg"},
+  {nombre: "Bota azul", tipo: "bota", color: "azul", img: "./bota-azul.jpg"},
+  {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./zapato-rojo.jpg"}
+]
+//Cambiar de getElementByName por querySelector y agregar #
+const li = document.querySelector('#lista-de-productos');
+//Cambiar el nombre de $i a 'input' y al llamar el elemento con el querySelecor, 
+// se agregó el #
+const input = document.querySelector('#input');
+
+
+
+for (let i = 0; i < productos.length; i++) {
+  //Cambiar 'd' por 'container'
+  //Agregar ;
+  let container = document.createElement("div");
+  container.classList.add("producto");
+
+  //Cambiar de 't' a 'titulo y de 'p' a 'productos' y agregar ;
+  const titulo = document.createElement("productos");
+  titulo.classList.add("titulo");
+  titulo.textContent = productos[i].nombre
+  
+  let imagen = document.createElement("img");
+  imagen.setAttribute('src', productos[i].img);
+
+  //Cambiar 'd' por 'container'
+  //Cambiar de 'ti' a 'tiulo'
+  container.appendChild(titulo);
+  container.appendChild(imagen);
+
+  //Cambiar de 'd' a 'container
+  //Agregar ;
+  li.appendChild(container);
+}
+
+//Agregar ;
+function displayProductos(productos) {
+const botonDeFiltro = document.querySelector('#button');
+
+botonDeFiltro.onclick = function() {
+  while (li.firstChild) {
+    li.removeChild(li.firstChild);
+  }
+}
+  //Cambiar de '$i' a 'input'
+  const texto = input.value;
+  console.log(texto);
+  const productosFiltrados = filtrado(productos, texto );
+
+  for (let i = 0; i < productosFiltrados.length; i++) {
+    var d = document.createElement("div")
+    d.classList.add("producto")
+  
+    var ti = document.createElement("p")
+    ti.classList.add("titulo")
+    ti.textContent = productosFiltrados[i].nombre
+  
+    var imagen = document.createElement("img");
+    imagen.setAttribute('src', productosFiltrados[i].img);
+  
+    //Cambiar de 'd' a 'container
+    //Agregar ;
+    container.appendChild(titulo);
+    contaner.appendChild(imagen);
+  
+    li.appendChild(container);
+  }
+}
+
+const filtrado = (productos = [], texto) => {
+  return productos.filter(item => item.tipo.includes(texto) || item.color.includes(texto));
+}  
