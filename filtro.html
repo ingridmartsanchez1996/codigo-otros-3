@@ -5,17 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="filtro.css">
+  <link rel="stylesheet" href="./filtro.css"> <!--Corregir el href agregando ./ -->
   <title>Filtros en JS</title>
 </head>
 
 <body>
 
   <div>
-      <input type="text" placeholder="Seleccioná un color o tipo">
-      <button>Filtrar</button>
-      <h1>Lista de productos </h1>
+    <!--Cambiar el orden de los elementos y agregar id a estos-->
+    <h1>Lista de productos </h1>
       <div id="lista-de-productos">
+      <input id='input' type="text" placeholder="Selecciona un color o tipo">
+      <button id="botonDeFiltro">Filtrar</button>
     </div>
   </div>
   <script src="../filtro.js"></script>

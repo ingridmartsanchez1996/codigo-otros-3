@@ -1,4 +1,4 @@
-// Tenemos un li de productos
+// Tenemos un listado de productos
 
 const productos = [
   {nombre: "Zapato negro", tipo: "zapato", color: "negro", img: "./taco-negro.jpg"},
@@ -7,36 +7,49 @@ const productos = [
   {nombre: "Bota azul", tipo: "bota", color: "azul", img: "./bota-azul.jpg"},
   {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./zapato-rojo.jpg"}
 ]
+//Cambiar de getElementByName por querySelector y agregar #
+const li = document.querySelector('#lista-de-productos');
+//Cambiar el nombre de $i a 'input' y al llamar el elemento con el querySelecor, 
+// se agregó el #
+const input = document.querySelector('#input');
 
-const li = document.getElementsByName("lista-de-productos")
-const $i = document.querySelector('.input');
+
 
 for (let i = 0; i < productos.length; i++) {
-  var d = document.createElement("div")
-  d.classList.add("producto")
+  //Cambiar 'd' por 'container'
+  //Agregar ;
+  let container = document.createElement("div");
+  container.classList.add("producto");
 
-  var ti = document.createElement("p")
-  ti.classList.add("titulo")
-  ti.textContent = productos[i].nombre
+  //Cambiar de 't' a 'titulo y de 'p' a 'productos' y agregar ;
+  const titulo = document.createElement("productos");
+  titulo.classList.add("titulo");
+  titulo.textContent = productos[i].nombre
   
-  var imagen = document.createElement("img");
+  let imagen = document.createElement("img");
   imagen.setAttribute('src', productos[i].img);
 
-  d.appendChild(ti)
-  d.appendChild(imagen)
+  //Cambiar 'd' por 'container'
+  //Cambiar de 'ti' a 'tiulo'
+  container.appendChild(titulo);
+  container.appendChild(imagen);
 
-  li.appendChild(d)
+  //Cambiar de 'd' a 'container
+  //Agregar ;
+  li.appendChild(container);
 }
 
-displayProductos(productos)
-const botonDeFiltro = document.querySelector("button");
+//Agregar ;
+function displayProductos(productos) {
+const botonDeFiltro = document.querySelector('#button');
 
 botonDeFiltro.onclick = function() {
   while (li.firstChild) {
     li.removeChild(li.firstChild);
   }
-
-  const texto = $i.value;
+}
+  //Cambiar de '$i' a 'input'
+  const texto = input.value;
   console.log(texto);
   const productosFiltrados = filtrado(productos, texto );
 
@@ -47,14 +60,16 @@ botonDeFiltro.onclick = function() {
     var ti = document.createElement("p")
     ti.classList.add("titulo")
     ti.textContent = productosFiltrados[i].nombre
-    
+  
     var imagen = document.createElement("img");
     imagen.setAttribute('src', productosFiltrados[i].img);
   
-    d.appendChild(ti)
-    d.appendChild(imagen)
+    //Cambiar de 'd' a 'container
+    //Agregar ;
+    container.appendChild(titulo);
+    contaner.appendChild(imagen);
   
-    li.appendChild(d)
+    li.appendChild(container);
   }
 }
 
