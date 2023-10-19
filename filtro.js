@@ -9,12 +9,14 @@ const productos = [
 ]
 //Cambiar de getElementByName por querySelector y agregar #
 const li = document.querySelector('#lista-de-productos');
+
 //Cambiar el nombre de $i a 'input' y al llamar el elemento con el querySelecor, 
 // se agregó el #
 const input = document.querySelector('#input');
 
+displayProductos(productos);
 
-
+function displayProductos (productos) {
 for (let i = 0; i < productos.length; i++) {
   //Cambiar 'd' por 'container'
   //Agregar ;
@@ -37,41 +39,25 @@ for (let i = 0; i < productos.length; i++) {
   //Cambiar de 'd' a 'container
   //Agregar ;
   li.appendChild(container);
+  }
 }
 
 //Agregar ;
-function displayProductos(productos) {
-const botonDeFiltro = document.querySelector('#button');
+const botonDeFiltro = document.querySelector('#botonDeFiltro');
 
 botonDeFiltro.onclick = function() {
   while (li.firstChild) {
     li.removeChild(li.firstChild);
   }
-}
+
   //Cambiar de '$i' a 'input'
   const texto = input.value;
   console.log(texto);
-  const productosFiltrados = filtrado(productos, texto );
+  const productosFiltrados = filtrado(productos, texto);  
 
-  for (let i = 0; i < productosFiltrados.length; i++) {
-    var d = document.createElement("div")
-    d.classList.add("producto")
-  
-    var ti = document.createElement("p")
-    ti.classList.add("titulo")
-    ti.textContent = productosFiltrados[i].nombre
-  
-    var imagen = document.createElement("img");
-    imagen.setAttribute('src', productosFiltrados[i].img);
-  
-    //Cambiar de 'd' a 'container
-    //Agregar ;
-    container.appendChild(titulo);
-    contaner.appendChild(imagen);
-  
-    li.appendChild(container);
+  displayProductos(productosFiltrados);
   }
-}
+
 
 const filtrado = (productos = [], texto) => {
   return productos.filter(item => item.tipo.includes(texto) || item.color.includes(texto));
